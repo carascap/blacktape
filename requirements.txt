@@ -4,7 +4,9 @@
 #
 #    pip-compile --output-file=requirements.txt requirements.in
 #
-greenlet==1.1.1
+click==8.0.1
+    # via -r requirements.in
+greenlet==1.1.2
     # via sqlalchemy
-sqlalchemy==1.4.22
+sqlalchemy==1.4.25
     # via -r requirements.in
