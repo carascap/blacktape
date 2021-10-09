@@ -1,2 +1,2 @@
 # blacktape
-Main Python package for CARASCAP utilities
+Python library and supporting utilities to automate redaction of text files
