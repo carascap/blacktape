@@ -1,3 +1,4 @@
 click
 pbr
+spacy
 sqlalchemy

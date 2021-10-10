@@ -12,14 +12,33 @@ backports.entry-points-selectable==1.1.0
     # via virtualenv
 black==21.9b0
     # via -r requirements-dev.in
-click==8.0.2
+blis==0.7.4
+    # via
+    #   spacy
+    #   thinc
+catalogue==2.0.6
+    # via
+    #   spacy
+    #   srsly
+    #   thinc
+certifi==2021.10.8
+    # via requests
+charset-normalizer==2.0.6
+    # via requests
+click==8.0.3
     # via
     #   -r requirements.in
     #   black
     #   pip-tools
     #   pytest-click
+    #   typer
 coverage[toml]==6.0.1
     # via pytest-cov
+cymem==2.0.5
+    # via
+    #   preshed
+    #   spacy
+    #   thinc
 distlib==0.3.3
     # via virtualenv
 filelock==3.3.0
@@ -30,26 +49,45 @@ flake8==3.9.2
     # via -r requirements-dev.in
 greenlet==1.1.2
     # via sqlalchemy
+idna==3.2
+    # via requests
 iniconfig==1.1.1
     # via pytest
 isort==5.9.3
     # via
     #   -r requirements-dev.in
     #   pylint
+jinja2==3.0.2
+    # via spacy
 lazy-object-proxy==1.6.0
     # via astroid
+markupsafe==2.0.1
+    # via jinja2
 mccabe==0.6.1
     # via
     #   flake8
     #   pylint
+murmurhash==1.0.5
+    # via
+    #   preshed
+    #   spacy
+    #   thinc
 mypy-extensions==0.4.3
     # via black
+numpy==1.21.2
+    # via
+    #   blis
+    #   spacy
+    #   thinc
 packaging==21.0
     # via
     #   pytest
+    #   spacy
     #   tox
 pathspec==0.9.0
     # via black
+pathy==0.6.0
+    # via spacy
 pbr==5.6.0
     # via -r requirements.in
 pep517==0.11.0
@@ -65,12 +103,20 @@ pluggy==1.0.0
     # via
     #   pytest
     #   tox
+preshed==3.0.5
+    # via
+    #   spacy
+    #   thinc
 py==1.10.0
     # via
     #   pytest
     #   tox
 pycodestyle==2.7.0
     # via flake8
+pydantic==1.8.2
+    # via
+    #   spacy
+    #   thinc
 pyflakes==2.3.1
     # via flake8
 pylint==2.11.1
@@ -91,12 +137,26 @@ pytest-mock==3.6.1
     # via -r requirements-dev.in
 regex==2021.10.8
     # via black
+requests==2.26.0
+    # via spacy
 six==1.16.0
     # via
     #   tox
     #   virtualenv
+smart-open==5.2.1
+    # via pathy
+spacy==3.1.3
+    # via -r requirements.in
+spacy-legacy==3.0.8
+    # via spacy
 sqlalchemy==1.4.25
     # via -r requirements.in
+srsly==2.4.1
+    # via
+    #   spacy
+    #   thinc
+thinc==8.0.10
+    # via spacy
 toml==0.10.2
     # via
     #   pylint
@@ -109,13 +169,26 @@ tomli==1.2.1
     #   pep517
 tox==3.24.4
     # via -r requirements-dev.in
+tqdm==4.62.3
+    # via spacy
+typer==0.4.0
+    # via
+    #   pathy
+    #   spacy
 typing-extensions==3.10.0.2
     # via
     #   astroid
     #   black
+    #   pydantic
     #   pylint
+urllib3==1.26.7
+    # via requests
 virtualenv==20.8.1
     # via tox
+wasabi==0.8.2
+    # via
+    #   spacy
+    #   thinc
 wheel==0.37.0
     # via pip-tools
 wrapt==1.12.1
