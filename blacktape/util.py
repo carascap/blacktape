@@ -1,10 +1,9 @@
 import logging
 import multiprocessing
 import signal
-from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor, as_completed
-from typing import List, Callable
-
+from pathlib import Path
+from typing import Callable, List
 
 logger = multiprocessing.log_to_stderr(level=logging.INFO)
 
