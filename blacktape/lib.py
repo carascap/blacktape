@@ -43,7 +43,9 @@ def match_pattern_in_text(text: str, pattern: str) -> List[Dict[str, Union[str, 
 def match_patterns_in_text(
     text: str, patterns: [Iterable[str]]
 ) -> List[Dict[str, Union[str, int]]]:
-    return [match for pattern in patterns for match in match_pattern_in_text(text, pattern)]
+    return [
+        match for pattern in patterns for match in match_pattern_in_text(text, pattern)
+    ]
 
 
 def match_entities_in_file(
