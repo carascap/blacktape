@@ -8,7 +8,7 @@ astroid==2.9.3
     # via pylint
 attrs==21.4.0
     # via pytest
-black==21.12b0
+black==22.1.0
     # via -r requirements-dev.in
 blis==0.7.5
     # via
@@ -21,7 +21,7 @@ catalogue==2.0.6
     #   thinc
 certifi==2021.10.8
     # via requests
-charset-normalizer==2.0.10
+charset-normalizer==2.0.11
     # via requests
 click==8.0.3
     # via
@@ -31,7 +31,11 @@ click==8.0.3
     #   pytest-click
     #   spacy-model-manager
     #   typer
-coverage[toml]==6.2
+colorama==0.4.4
+    # via rich
+commonmark==0.9.1
+    # via rich
+coverage[toml]==6.3.1
     # via pytest-cov
 cymem==2.0.6
     # via
@@ -75,7 +79,7 @@ murmurhash==1.0.6
     #   thinc
 mypy-extensions==0.4.3
     # via black
-numpy==1.22.1
+numpy==1.22.2
     # via
     #   blis
     #   spacy
@@ -89,13 +93,13 @@ pathspec==0.9.0
     # via black
 pathy==0.6.1
     # via spacy
-pbr==5.8.0
+pbr==5.8.1
     # via
     #   -r requirements.in
     #   spacy-model-manager
 pep517==0.12.0
     # via pip-tools
-pip-tools==6.4.0
+pip-tools==6.5.0
     # via -r requirements-dev.in
 platformdirs==2.4.1
     # via
@@ -122,11 +126,13 @@ pydantic==1.8.2
     #   thinc
 pyflakes==2.4.0
     # via flake8
+pygments==2.11.2
+    # via rich
 pylint==2.12.2
     # via -r requirements-dev.in
-pyparsing==3.0.6
+pyparsing==3.0.7
     # via packaging
-pytest==6.2.5
+pytest==7.0.0
     # via
     #   -r requirements-dev.in
     #   pytest-click
@@ -136,7 +142,7 @@ pytest-click==1.0.2
     # via -r requirements-dev.in
 pytest-cov==3.0.0
     # via -r requirements-dev.in
-pytest-mock==3.6.1
+pytest-mock==3.7.0
     # via -r requirements-dev.in
 pyyaml==6.0
     # via -r requirements.in
@@ -144,6 +150,8 @@ requests==2.27.1
     # via
     #   spacy
     #   spacy-model-manager
+rich==11.1.0
+    # via spacy-model-manager
 six==1.16.0
     # via
     #   tox
@@ -158,9 +166,9 @@ spacy-legacy==3.0.8
     # via spacy
 spacy-loggers==1.0.1
     # via spacy
-spacy-model-manager==0.1.2
+spacy-model-manager==0.1.3
     # via -r requirements-dev.in
-sqlalchemy==1.4.29
+sqlalchemy==1.4.31
     # via -r requirements.in
 srsly==2.4.2
     # via
@@ -173,13 +181,13 @@ thinc==8.0.13
 toml==0.10.2
     # via
     #   pylint
-    #   pytest
     #   tox
-tomli==1.2.3
+tomli==2.0.0
     # via
     #   black
     #   coverage
     #   pep517
+    #   pytest
 tox==3.24.5
     # via -r requirements-dev.in
 tqdm==4.62.3
@@ -196,7 +204,7 @@ typing-extensions==4.0.1
     #   pylint
 urllib3==1.26.8
     # via requests
-virtualenv==20.13.0
+virtualenv==20.13.1
     # via tox
 wasabi==0.9.0
     # via
