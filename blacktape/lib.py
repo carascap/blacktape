@@ -1,6 +1,6 @@
 import re
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Union
+from typing import Dict, Iterable, Iterator, List, Optional, Union
 
 import spacy
 
@@ -62,3 +62,34 @@ def match_patterns_in_file(
     path: Union[Path, str], patterns: [Iterable[str]]
 ) -> List[Dict[str, Union[str, int]]]:
     return match_patterns_in_text(Path(path).read_text(encoding="UTF-8"), patterns)
+
+
+def chunks(
+    file_path: Path, nlp: spacy.Language, max_chunk_size: int = 500_000, **kwargs
+) -> Iterator[str]:
+    """
+    Tries to break a text file into chunks of at most max_chunk_size characters without splitting sentences.
+    """
+
+    with file_path.open(mode="r", **kwargs) as f:
+
+        carryover = ""
+
+        while chunk := f.read(max_chunk_size - len(carryover)):
+            # Add possibly truncated sentence from previous block
+            chunk = carryover + chunk
+
+            # Parse sentences in current block
+            doc = nlp(chunk)
+            sentences = list(doc.sents)
+
+            # Try to return a block of complete sentences
+            if len(sentences) > 1 and (offset := sentences[-1].start_char) > 0:
+
+                # Return up to the beginning of the last sentence
+                yield chunk[:offset]
+                carryover = chunk[offset:]
+
+            else:
+                yield chunk
+                carryover = ""
