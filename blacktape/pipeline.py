@@ -25,7 +25,9 @@ class Pipeline:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.executor.shutdown()
 
-    def submit_ner_job(self, text: str, entity_types: Optional[Iterable[str]] = None, **kwargs):
+    def submit_ner_job(
+        self, text: str, entity_types: Optional[Iterable[str]] = None, **kwargs
+    ):
         self.futures.append(
             self.executor.submit(
                 match_entities_in_text, text, self.spacy_model, entity_types, **kwargs
