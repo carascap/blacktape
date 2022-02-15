@@ -10,7 +10,7 @@ attrs==21.4.0
     # via pytest
 black==22.1.0
     # via -r requirements-dev.in
-blis==0.7.5
+blis==0.7.6
     # via
     #   spacy
     #   thinc
@@ -21,7 +21,7 @@ catalogue==2.0.6
     #   thinc
 certifi==2021.10.8
     # via requests
-charset-normalizer==2.0.11
+charset-normalizer==2.0.12
     # via requests
 click==8.0.3
     # via
@@ -44,7 +44,7 @@ cymem==2.0.6
     #   thinc
 distlib==0.3.4
     # via virtualenv
-filelock==3.4.2
+filelock==3.5.0
     # via
     #   tox
     #   virtualenv
@@ -99,9 +99,9 @@ pbr==5.8.1
     #   spacy-model-manager
 pep517==0.12.0
     # via pip-tools
-pip-tools==6.5.0
+pip-tools==6.5.1
     # via -r requirements-dev.in
-platformdirs==2.4.1
+platformdirs==2.5.0
     # via
     #   black
     #   pylint
@@ -132,13 +132,13 @@ pylint==2.12.2
     # via -r requirements-dev.in
 pyparsing==3.0.7
     # via packaging
-pytest==7.0.0
+pytest==7.0.1
     # via
     #   -r requirements-dev.in
     #   pytest-click
     #   pytest-cov
     #   pytest-mock
-pytest-click==1.0.2
+pytest-click==1.1.0
     # via -r requirements-dev.in
 pytest-cov==3.0.0
     # via -r requirements-dev.in
@@ -150,7 +150,7 @@ requests==2.27.1
     # via
     #   spacy
     #   spacy-model-manager
-rich==11.1.0
+rich==11.2.0
     # via spacy-model-manager
 six==1.16.0
     # via
@@ -158,7 +158,7 @@ six==1.16.0
     #   virtualenv
 smart-open==5.2.1
     # via pathy
-spacy==3.2.1
+spacy==3.2.2
     # via
     #   -r requirements.in
     #   spacy-model-manager
@@ -167,7 +167,7 @@ spacy-legacy==3.0.8
 spacy-loggers==1.0.1
     # via spacy
 spacy-model-manager==0.1.3
-    # via -r requirements-dev.in
+    # via -r requirements.in
 sqlalchemy==1.4.31
     # via -r requirements.in
 srsly==2.4.2
@@ -182,7 +182,7 @@ toml==0.10.2
     # via
     #   pylint
     #   tox
-tomli==2.0.0
+tomli==2.0.1
     # via
     #   black
     #   coverage
@@ -196,7 +196,7 @@ typer==0.4.0
     # via
     #   pathy
     #   spacy
-typing-extensions==4.0.1
+typing-extensions==4.1.1
     # via
     #   astroid
     #   black
