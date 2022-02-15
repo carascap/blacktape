@@ -2,4 +2,5 @@ click
 pbr
 pyyaml
 spacy
+spacy-model-manager
 sqlalchemy
