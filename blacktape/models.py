@@ -13,7 +13,7 @@ class EntityMatch(Base):
     text = Column(String)
     label = Column(String)  # Corresponds to spaCy's Span.label_
     offset = Column(Integer)
-    # filepath = Column(String)
+    file = Column(String)
     file_report_id = Column(Integer, ForeignKey("file_report.id"))
 
     def __str__(self):
@@ -28,7 +28,7 @@ class PatternMatch(Base):
     text = Column(String)
     pattern = Column(String)
     offset = Column(Integer)
-    # filepath = Column(String)
+    file = Column(String)
     file_report_id = Column(Integer, ForeignKey("file_report.id"))
 
     def __str__(self):
@@ -46,8 +46,8 @@ class FileReport(Base):
     md5 = Column(String)
     sha256 = Column(String)
     error = Column(String)
-    entities = relationship("Entity", backref="file_report")
-    regexes = relationship("Regex", backref="file_report")
+    entities = relationship("EntityMatch", backref="file_report")
+    regexes = relationship("PatternMatch", backref="file_report")
 
 
 class Configuration(Base):

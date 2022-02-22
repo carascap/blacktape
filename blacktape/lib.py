@@ -5,6 +5,11 @@ from typing import Dict, Iterable, Iterator, List, Optional, Union
 import spacy
 
 
+# match types
+ENTITY = "entity"
+PATTERN = "pattern"
+
+
 def get_entities_for_spacy_model(model: str) -> List[str]:
     return spacy.load(model).meta["labels"]["ner"]
 
@@ -20,6 +25,7 @@ def match_entities_in_text(
 
         res.append(
             {
+                "type": ENTITY,
                 "text": entity.text,
                 "label": entity.label_,
                 "offset": entity.start_char,
@@ -35,6 +41,7 @@ def match_pattern_in_text(
 ) -> List[Dict[str, Union[str, int]]]:
     return [
         {
+            "type": PATTERN,
             "pattern": pattern,
             "text": match.group(),
             "offset": match.start(),
