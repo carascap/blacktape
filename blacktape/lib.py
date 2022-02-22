@@ -4,7 +4,6 @@ from typing import Dict, Iterable, Iterator, List, Optional, Union
 
 import spacy
 
-
 # match types
 ENTITY = "entity"
 PATTERN = "pattern"
