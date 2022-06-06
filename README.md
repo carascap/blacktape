@@ -9,7 +9,7 @@ Python library and supporting utilities to automate redaction of text files
 
 ## License(s)
 
-Logos, documentation, and other non-software products of the CARASCAP team are distributed under the terms of Creative Commons 4.0 Attribution. Software items in RATOM repositories are distributed under the terms of the MIT License. See the LICENSE file for additional details.
+Logos, documentation, and other non-software products of the CARASCAP team are distributed under the terms of Creative Commons 4.0 Attribution. Software items in CARASCAP repositories are distributed under the terms of the MIT License. See the LICENSE file for additional details.
 
 &copy; 2022, The University of North Carolina at Chapel Hill.
 
