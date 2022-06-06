@@ -7,7 +7,9 @@
 [![codecov](https://codecov.io/gh/carascap/blacktape/branch/main/graph/badge.svg)](https://codecov.io/gh/carascap/blacktape)
 [![Maintainability](https://api.codeclimate.com/v1/badges/da1ce430d2d5fb3b548a/maintainability)](https://codeclimate.com/github/carascap/blacktape/maintainability)
 
-Python library and supporting utilities to automate redaction of text files
+Python library and supporting utilities to support text analysis, reporting, and redaction workflows.
+
+**This software is in active development.**
 
 ## License(s)
 
