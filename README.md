@@ -1,4 +1,4 @@
-![Logo](https://github.com/carascap/carascap.github.io/blob/main/images/carascap-200x200.png)
+![Logo](https://github.com/carascap/carascap.github.io/blob/main/images/carascap-100x100.png)
 
 # blacktape
 
