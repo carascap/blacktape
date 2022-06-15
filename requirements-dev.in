@@ -1,6 +1,8 @@
 black
 flake8
+ipywidgets
 isort
+jupyterlab
 pip-tools
 pylint
 pytest
