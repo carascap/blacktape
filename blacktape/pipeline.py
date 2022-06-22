@@ -34,5 +34,7 @@ class Pipeline:
             )
         )
 
-    def submit_regex_job(self, text: str, pattern: str):
-        self.futures.append(self.executor.submit(match_pattern_in_text, text, pattern))
+    def submit_regex_job(self, text: str, pattern: str, label: str):
+        self.futures.append(
+            self.executor.submit(match_pattern_in_text, text, pattern, label)
+        )

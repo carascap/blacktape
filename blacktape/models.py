@@ -27,6 +27,7 @@ class PatternMatch(Base):
     id = Column(Integer, primary_key=True)
     text = Column(String)
     pattern = Column(String)
+    label = Column(String)  # e.g. "SSN"
     offset = Column(Integer)
     file = Column(String)
     file_report_id = Column(Integer, ForeignKey("file_report.id"))
