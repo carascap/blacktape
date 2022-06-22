@@ -1,6 +1,6 @@
 import re
 from pathlib import Path
-from typing import Dict, Iterable, Iterator, List, Optional, Union
+from typing import Dict, Iterable, Iterator, List, Optional, Tuple, Union
 
 import spacy
 
@@ -36,12 +36,13 @@ def match_entities_in_text(
 
 
 def match_pattern_in_text(
-    text: str, pattern: str, **kwargs
+    text: str, pattern: str, label: Optional[str] = None, **kwargs
 ) -> List[Dict[str, Union[str, int]]]:
     return [
         {
             "type": PATTERN,
             "pattern": pattern,
+            "label": label,
             "text": match.group(),
             "offset": match.start(),
             **kwargs,
@@ -51,12 +52,12 @@ def match_pattern_in_text(
 
 
 def match_patterns_in_text(
-    text: str, patterns: [Iterable[str]], **kwargs
+    text: str, patterns: Iterable[Tuple[str, str]], **kwargs
 ) -> List[Dict[str, Union[str, int]]]:
     return [
         match
-        for pattern in patterns
-        for match in match_pattern_in_text(text, pattern, **kwargs)
+        for pattern, label in patterns
+        for match in match_pattern_in_text(text, pattern, label, **kwargs)
     ]
 
 
