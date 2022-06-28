@@ -6,7 +6,7 @@ import spacy
 
 # match types
 ENTITY = "entity"
-PATTERN = "pattern"
+REGEX = "regex"
 
 
 def get_entities_for_spacy_model(model: str) -> List[str]:
@@ -40,7 +40,7 @@ def match_pattern_in_text(
 ) -> List[Dict[str, Union[str, int]]]:
     return [
         {
-            "type": PATTERN,
+            "type": REGEX,
             "pattern": pattern,
             "label": label,
             "text": match.group(),
