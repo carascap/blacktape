@@ -3,6 +3,11 @@ import signal
 from functools import partial
 from pathlib import Path
 
+from sqlalchemy.orm.session import Session
+
+import blacktape
+from blacktape.models import Configuration
+
 
 def worker_init():
     """
@@ -22,3 +27,17 @@ def md5_file(path: Path) -> str:
             md5.update(block)
 
     return md5.hexdigest()
+
+
+def record_workflow_config(session: Session, **kwargs) -> None:
+    """
+    Store the current workflow run's configuration in the DB
+    """
+
+    session.add(Configuration(name="blacktape_version", value=blacktape.__version__))
+
+    session.add_all(
+        Configuration(name=key, value=str(value)) for key, value in kwargs.items()
+    )
+
+    session.commit()

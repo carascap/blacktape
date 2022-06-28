@@ -89,7 +89,6 @@ disable=raw-checker-failed,
         missing-module-docstring,
         logging-fstring-interpolation,  # https://github.com/PyCQA/pylint/issues/3570#issuecomment-622980946
         line-too-long,  # formatting handled by black
-        bad-continuation,  # formatting handled by black
         ungrouped-imports,  # import order handled by isort
         missing-function-docstring,  # until the dust settles a bit
 
