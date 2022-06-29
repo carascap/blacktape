@@ -50,23 +50,3 @@ def db_session(session_factory: sessionmaker) -> ContextManager[Session]:
 
     finally:
         session.close()
-
-
-def db_session_from_cmd_out(result: Result) -> ContextManager[Session]:
-    """
-    Convenience function to inspect the DB output of a CLI command
-    """
-
-    # Find DB file in command result
-    db_file = None
-    for line in result.output.splitlines():
-        if line.startswith("Creating database file:"):
-            db_file = Path(line.rsplit(maxsplit=1)[1].strip())
-
-    # Sanity check
-    if not (db_file and db_file.is_file()):
-        raise ValueError(f"Invalid database file: {db_file}")
-
-    # Return session factory
-    engine = create_engine(f"sqlite:///{db_file}")
-    return db_session(sessionmaker(bind=engine))
