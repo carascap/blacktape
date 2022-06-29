@@ -22,7 +22,7 @@ class Match(Base):
 
     def __str__(self):
         column_names = [col.key for col in self.__table__.columns]
-        return ", ".join([f"{name}: {getattr(self, name)}" for name in column_names])
+        return "\n".join([f"{name}: {getattr(self, name)}" for name in column_names])
 
 
 class FileReport(Base):
