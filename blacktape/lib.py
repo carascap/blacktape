@@ -61,25 +61,6 @@ def match_patterns_in_text(
     ]
 
 
-def match_entities_in_file(
-    path: Union[Path, str],
-    spacy_model_name: str,
-    entity_types: Optional[Iterable[str]] = None,
-    **kwargs,
-) -> List[Dict[str, Union[str, int]]]:
-    return match_entities_in_text(
-        Path(path).read_text(encoding="UTF-8"), spacy_model_name, entity_types, **kwargs
-    )
-
-
-def match_patterns_in_file(
-    path: Union[Path, str], patterns: [Iterable[str]], **kwargs
-) -> List[Dict[str, Union[str, int]]]:
-    return match_patterns_in_text(
-        Path(path).read_text(encoding="UTF-8"), patterns, **kwargs
-    )
-
-
 def chunks(
     file_path: Path, nlp: spacy.Language, max_chunk_size: int = 500_000, **kwargs
 ) -> Iterator[str]:

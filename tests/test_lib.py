@@ -7,7 +7,7 @@ import spacy
 from spacy_model_manager.lib import get_installed_model_version
 
 from blacktape.db import db_init, db_session
-from blacktape.lib import chunks
+from blacktape.lib import chunks, get_entities_for_spacy_model, match_patterns_in_text
 from blacktape.models import FileReport, Match
 from blacktape.pipeline import Pipeline
 from blacktape.util import md5_file, record_workflow_config
@@ -108,4 +108,27 @@ def test_pipeline(en_core_web_sm_3_3_0, filename, expected_matches):
 
     # Check DB output
     with db_session(session_factory) as session:
+
         assert session.query(Match).count() == expected_matches
+
+        assert str(session.query(Match).first())
+
+
+def test_get_entities_for_spacy_model(en_core_web_sm_3_3_0):
+    assert len(get_entities_for_spacy_model(en_core_web_sm_3_3_0)) == 18
+
+
+@pytest.mark.parametrize(
+    "filename, expected_matches",
+    [("birds_and_bees.txt", 203)],
+)
+def test_match_patterns_in_text(filename, expected_matches):
+    patterns = [(r"[0-9]+", "number"), (r"\b[A-Z][a-zA-Z]*\b", "capitalized word")]
+
+    test_dir = Path(__file__).parent.resolve()
+    test_file = test_dir / "data" / filename
+    text = test_file.read_text(encoding="UTF-8")
+
+    matches = match_patterns_in_text(text, patterns)
+
+    assert len(matches) == expected_matches
