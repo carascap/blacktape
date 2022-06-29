@@ -1,11 +1,18 @@
+from datetime import datetime
 from pathlib import Path
-from tempfile import TemporaryDirectory
+from tempfile import TemporaryDirectory, gettempdir
 
 import pytest
 import spacy
+from spacy_model_manager.lib import get_installed_model_version
 
+from blacktape.db import db_init, db_session
 from blacktape.lib import chunks
-from blacktape.util import md5_file
+from blacktape.models import FileReport, Match
+from blacktape.pipeline import Pipeline
+from blacktape.util import md5_file, record_workflow_config
+
+SQLITE3_FILENAME_TEMPLATE = "{}_{}.sqlite3"
 
 
 @pytest.mark.parametrize(
@@ -15,10 +22,10 @@ from blacktape.util import md5_file
         ("The_History_of_Don_Quixote.txt", "3ca6ba13df859a9a8fb078c204356cb0"),
     ],
 )
-def test_chunks(en_core_web_sm_3_2_0, filename, digest):
+def test_chunks(en_core_web_sm_3_3_0, filename, digest):
 
     # https://spacy.io/models
-    nlp = spacy.load(en_core_web_sm_3_2_0, disable=["parser"])  # can disable more?
+    nlp = spacy.load(en_core_web_sm_3_3_0, disable=["parser"])  # can disable more?
     nlp.enable_pipe("senter")
 
     test_dir = Path(__file__).parent.resolve()
@@ -44,3 +51,61 @@ def test_chunks(en_core_web_sm_3_2_0, filename, digest):
                 f.write(chunk)
 
         assert md5_file(reconstructed_file) == digest
+
+
+@pytest.mark.parametrize(
+    "filename, expected_matches",
+    [("birds_and_bees.txt", 251)],
+)
+def test_pipeline(en_core_web_sm_3_3_0, filename, expected_matches):
+    model = en_core_web_sm_3_3_0
+
+    target_entities = {"PERSON", "ORG", "DATE", "GPE"}
+
+    patterns = [(r"[0-9]+", "number"), (r"\b[A-Z][a-zA-Z]*\b", "capitalized word")]
+
+    test_dir = Path(__file__).parent.resolve()
+    test_file = test_dir / "data" / filename
+    text = test_file.read_text(encoding="UTF-8")
+
+    # DB file timestamped for this pipeline run
+    db_file = Path(gettempdir()) / SQLITE3_FILENAME_TEMPLATE.format(
+        test_file.name,
+        datetime.now()
+        .isoformat(timespec="seconds")
+        .translate(str.maketrans({"-": "", ":": ""})),
+    )
+    session_factory = db_init(db_file)
+
+    # Pipeline with DB session
+    with Pipeline(spacy_model=model) as pipeline, db_session(
+        session_factory
+    ) as session:
+
+        # Record source file info
+        file_report = FileReport(path=str(test_file))
+        session.add(file_report)
+
+        # Record workflow parameters
+        record_workflow_config(
+            session,
+            source=str(test_file),
+            spacy_model=model,
+            spacy_model_version=get_installed_model_version(model),
+        )
+
+        # Submit entities job
+        pipeline.submit_ner_job(text, target_entities)
+
+        # Submit regex jobs
+        for pattern, label in patterns:
+            pipeline.submit_regex_job(text, pattern, label)
+
+        # Make ORM objects from job results
+        for result in pipeline.results():
+            for match in result:
+                session.add(Match(**match))
+
+    # Check DB output
+    with db_session(session_factory) as session:
+        assert session.query(Match).count() == expected_matches
