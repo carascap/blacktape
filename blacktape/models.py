@@ -30,10 +30,6 @@ class FileReport(Base):
 
     id = Column(Integer, primary_key=True)
     path = Column(String)
-    # size = Column(Integer)
-    # md5 = Column(String)
-    # sha256 = Column(String)
-    # error = Column(String)
     matches = relationship("Match", backref="file_report")
 
 

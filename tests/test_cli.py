@@ -69,5 +69,5 @@ def run_command(
         ),
     ],
 )
-def test_spacy_model(cli_runner, cmd, options, args, expected):
+def test_blacktape(cli_runner, cmd, options, args, expected):
     run_command(cmd, options, args, cli_runner, expected)
