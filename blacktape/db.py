@@ -7,7 +7,6 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import ContextManager
 
-from click.testing import Result
 from sqlalchemy import create_engine
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.declarative import declarative_base
