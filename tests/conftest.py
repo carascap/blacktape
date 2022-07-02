@@ -13,7 +13,7 @@ def en_core_web_sm_3_3_0() -> None:
     # Check for already installed version
     existing_version = get_installed_model_version(model)
 
-    # Install version 3.2.0
+    # Install version 3.3.0
     if existing_version != version:
         assert (
             install_spacy_model(model=SPACY_MODELS.en_core_web_sm, version="3.3.0") == 0
