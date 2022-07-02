@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 from pathlib import Path
 from tempfile import TemporaryDirectory, gettempdir
@@ -119,16 +120,31 @@ def test_get_entities_for_spacy_model(en_core_web_sm_3_3_0):
 
 
 @pytest.mark.parametrize(
-    "filename, expected_matches",
-    [("birds_and_bees.txt", 203)],
+    "filename, patterns, expected_matches",
+    [
+        (
+            "birds_and_bees.txt",
+            [
+                (r"\d+", "number"),
+                (r"\b[A-Z][a-zA-Z]*\b", "capitalized word"),
+            ],
+            203,
+        ),
+        (
+            "birds_and_bees.txt",
+            [
+                (re.compile(r"\d+"), "number"),
+                (re.compile(r"\b[A-Z][a-zA-Z]*\b"), "capitalized word"),
+            ],
+            203,
+        ),
+    ],
 )
-def test_match_patterns_in_text(filename, expected_matches):
-    patterns = [(r"[0-9]+", "number"), (r"\b[A-Z][a-zA-Z]*\b", "capitalized word")]
-
+def test_match_patterns_in_text(filename, patterns, expected_matches):
     test_dir = Path(__file__).parent.resolve()
     test_file = test_dir / "data" / filename
     text = test_file.read_text(encoding="UTF-8")
 
-    matches = match_patterns_in_text(text, patterns)
+    matches = list(match_patterns_in_text(text, patterns))
 
     assert len(matches) == expected_matches

@@ -13,6 +13,13 @@ def get_entities_for_spacy_model(model: str) -> List[str]:
     return spacy.load(model).meta["labels"]["ner"]
 
 
+def _finditer(pattern: Union[str, re.Pattern], text: str):
+    if isinstance(pattern, re.Pattern):
+        return pattern.finditer(text)
+
+    return re.finditer(pattern, text)
+
+
 def match_entities_in_text(
     text: str, spacy_model: str, entity_types: Optional[Iterable[str]] = None, **kwargs
 ) -> List[Dict[str, Union[str, int]]]:
@@ -36,9 +43,9 @@ def match_entities_in_text(
 
 
 def match_pattern_in_text(
-    text: str, pattern: str, label: Optional[str] = None, **kwargs
-) -> List[Dict[str, Union[str, int]]]:
-    return [
+    text: str, pattern: Union[str, re.Pattern], label: Optional[str] = None, **kwargs
+) -> Iterator[Dict[str, Union[str, int]]]:
+    return (
         {
             "type": REGEX,
             "pattern": pattern,
@@ -47,18 +54,18 @@ def match_pattern_in_text(
             "offset": match.start(),
             **kwargs,
         }
-        for match in re.finditer(pattern, text)
-    ]
+        for match in _finditer(pattern, text)
+    )
 
 
 def match_patterns_in_text(
-    text: str, patterns: Iterable[Tuple[str, str]], **kwargs
-) -> List[Dict[str, Union[str, int]]]:
-    return [
+    text: str, patterns: Iterable[Tuple[Union[str, re.Pattern], str]], **kwargs
+) -> Iterator[Dict[str, Union[str, int]]]:
+    return (
         match
         for pattern, label in patterns
         for match in match_pattern_in_text(text, pattern, label, **kwargs)
-    ]
+    )
 
 
 def chunks(

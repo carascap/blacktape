@@ -34,7 +34,11 @@ class Pipeline:
             )
         )
 
+    @staticmethod
+    def _regex_job_func(*args, **kwargs):
+        return list(match_pattern_in_text(*args, **kwargs))
+
     def submit_regex_job(self, text: str, pattern: str, label: str, **kwargs):
         self.futures.append(
-            self.executor.submit(match_pattern_in_text, text, pattern, label, **kwargs)
+            self.executor.submit(self._regex_job_func, text, pattern, label, **kwargs)
         )
