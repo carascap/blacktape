@@ -16,13 +16,13 @@ This repository includes a selection of interactive Jupyter notebooks and sample
 
 Blacktape includes the following notebooks:
 
-*end-to-end.ipynb*: Reads in a sample English language file, chunks it into 10,000 character blocks, sets up a SQLite3 database for output. Sets up a pipelined workflow in which each chunk is analyzed to identify named entities and a selection of regular expressions. Includes a selection of database queries and produces a sample redacted output file in which redaction targets are overwritten with a fixed-length block sequence.
+**end-to-end.ipynb**: Reads in a sample English language file, chunks it into 10,000 character blocks, sets up a SQLite3 database for output. Sets up a pipelined workflow in which each chunk is analyzed to identify named entities and a selection of regular expressions. Includes a selection of database queries and produces a sample redacted output file in which redaction targets are overwritten with a fixed-length block sequence.
 
-*matching.ipynb*: Simple demonstration of NER and pattern matching for a given input.
+**matching.ipynb**: Simple demonstration of NER and pattern matching for a given input.
 
-*pii_patterns.ipynb*: Matching for common PII patterns against synthesized target data in a smple file.
+**pii_patterns.ipynb**: Matching for common PII patterns against synthesized target data in a smple file.
 
-*chunking_pipeline.ipynb*: Demonstration of large file chunking and job submission within a processing pipeline, illustrated by matching entities identified as PERSON or ORGANIZATION.
+**chunking_pipeline.ipynb**: Large file chunking and job submission within a processing pipeline, illustrated by matching entities identified as PERSON or ORGANIZATION.
 
 Several additional notebooks are provided that demonstrate subsets of the functionality illustrated in the above examples.
 
