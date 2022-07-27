@@ -12,9 +12,9 @@ Python library and supporting utilities to support text analysis, reporting, and
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/carascap/blacktape/main)
 
-This repository includes a selection of interactive Jupyter notebooks and sample data to familiarize you with using blacktape in different workflows. The easiest way to try out these notebooks is by clicking on the MyBinder button above, launching a remotely hosted JupyterLab session in your browser.
+This repository includes interactive Jupyter notebooks and sample data to demonstrate how blacktape can be implemented in various workflows. The easiest way to try out these notebooks is by clicking on the MyBinder button above, launching a remotely hosted JupyterLab session in your browser.
 
-Blacktape includes the following notebooks:
+Several of these notebooks are described below:
 
 **end-to-end.ipynb**: Reads in a sample English language file, chunks it into 10,000 character blocks, sets up a SQLite3 database for output. Sets up a pipelined workflow in which each chunk is analyzed to identify named entities and a selection of regular expressions. Includes a selection of database queries and produces a sample redacted output file in which redaction targets are overwritten with a fixed-length block sequence.
 
@@ -24,7 +24,7 @@ Blacktape includes the following notebooks:
 
 **chunking_pipeline.ipynb**: Large file chunking and job submission within a processing pipeline, illustrated by matching entities identified as PERSON or ORGANIZATION.
 
-Several additional notebooks are provided that demonstrate subsets of the functionality illustrated in the above examples.
+Additional notebooks are provided that demonstrate subsets of the functionality illustrated in the above examples.
 
 ## License(s)
 
